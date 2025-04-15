@@ -50,48 +50,9 @@ rmse = np.sqrt(mse)
 
 mse, r2
 
-# Full implementation of Somers' D for ordinal data based on the formula:
-# D_Y|Y = (concordant - discordant) / total_pairs
-# where total_pairs = concordant + discordant + ties in actual variable (Y)
-
-# Reset indices for alignment
-y_true_ord = y_test.reset_index(drop=True)
-y_pred_ord = pd.Series(y_pred).reset_index(drop=True)
-
-# Initialize counts
-concordant = 0
-discordant = 0
-ties_in_true = 0
-
-# Compare all pairs in the test set
-n = len(y_true_ord)
-for i in range(n):
-    for j in range(i + 1, n):
-        diff_true = y_true_ord[i] - y_true_ord[j]
-        diff_pred = y_pred_ord[i] - y_pred_ord[j]
-        product = diff_true * diff_pred
-        if product > 0:
-            concordant += 1
-        elif product < 0:
-            discordant += 1
-        elif diff_true == 0:
-            ties_in_true += 1
-
-# Compute Somers' D
-total_pairs = concordant + discordant + ties_in_true
-somers_d_ord = (concordant - discordant) / total_pairs if total_pairs > 0 else None
-
-{
-    "Concordant": concordant,
-    "Discordant": discordant,
-    "Ties in Y (actual)": ties_in_true,
-    "Total Pairs": total_pairs,
-    "Somers' D (ordinal)": somers_d_ord
-}
 
 # Display results
 print(f"Mean Squared Error (MSE): {mse:.4f}")
 print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
 print(f"R² Score: {r2:.4f}")
-print(f"Somers' D : {somers_d_ord:.4f}")
 
