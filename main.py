@@ -1,6 +1,8 @@
 import sys
 import os
 
+import model
+
 if __name__ == "__main__":
 	data_file = ""
 	if len(sys.argv) < 2:
@@ -10,4 +12,4 @@ if __name__ == "__main__":
 	else:
 		data_file = os.path.abspath(sys.argv[1])
 
-	print(data_file)
+	model.run(data_file)
