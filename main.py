@@ -13,4 +13,4 @@ if __name__ == "__main__":
 	else:
 		data_file = path.abspath(sys.argv[1])
 
-	model.run(data_file)
+	model.mlr(data_file)

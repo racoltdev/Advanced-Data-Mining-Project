@@ -9,7 +9,7 @@ from sklearn.pipeline import Pipeline
 
 import metrics
 
-def run(data_file):
+def mlr(data_file):
 	# Load the dataset
 	enhanced_anxiety_data = pd.read_csv(data_file)
 
