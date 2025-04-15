@@ -1,15 +1,16 @@
 import sys
-import os
+from os import path
 
 import model
 
 if __name__ == "__main__":
 	data_file = ""
 	if len(sys.argv) < 2:
-		cwd = os.path.dirname(os.path.realpath(__file__))
-		default_data_file = os.path.join(cwd, "datasets", "enhanced_anxiety_dataset.csv")
+		# Find dataset file dependent on location of this executable, not the user's CWD
+		cwd = path.dirname(path.realpath(__file__))
+		default_data_file = path.join(cwd, "datasets", "enhanced_anxiety_dataset.csv")
 		data_file = default_data_file
 	else:
-		data_file = os.path.abspath(sys.argv[1])
+		data_file = path.abspath(sys.argv[1])
 
 	model.run(data_file)
