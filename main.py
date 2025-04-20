@@ -14,3 +14,4 @@ if __name__ == "__main__":
 		data_file = path.abspath(sys.argv[1])
 
 	model.mlr(data_file)
+	model.decision_tree(data_file)
