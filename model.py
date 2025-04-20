@@ -72,7 +72,7 @@ def decision_tree(data_file):
 	    ]
 	)
 
-	dt = DecisionTreeRegressor()
+	dt = DecisionTreeRegressor(max_depth=8, min_samples_leaf=3, min_samples_split=4, random_state=42)
 	# Create a full pipeline with Decision Tree Regressor
 	pipeline = Pipeline(steps=[
 	    ("preprocessor", preprocessor),
@@ -84,6 +84,8 @@ def decision_tree(data_file):
 
 	# Train the model
 	pipeline.fit(X_train, y_train)
+#	print(dt.get_depth())
+#	print(dt.get_n_leaves())
 
 	print("Decision Tree Metrics")
 	y_pred = pipeline.predict(X_test)
