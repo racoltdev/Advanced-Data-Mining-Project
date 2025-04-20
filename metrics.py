@@ -28,6 +28,7 @@ class Metrics:
 		y_predict = y_predict.reshape(-1, 1)
 		discretizer = KBinsDiscretizer(n_bins=10, encode="ordinal", strategy="uniform")
 		discrete_predict = discretizer.fit_transform(y_predict)
+		discrete_predict = [x[0] for x in discrete_predict]
 		somers = somersd(y_test, discrete_predict)
 		return somers.statistic, somers.pvalue
 
