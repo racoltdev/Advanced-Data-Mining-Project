@@ -15,7 +15,7 @@ class Metrics:
 		self.rmse = math.sqrt(self.mse)
 		self.r2 = r2_score(y_test, y_predict)
 		self.somers, self.somers_pvalue = self.calc_somers(y_test, y_predict)
-		self.somers_pvalue = 1
+		self.somers_pvalue = 1.0
 
 	def print(self):
 		print(f"Mean Squared Error (MSE): {self.mse:.4f}")
